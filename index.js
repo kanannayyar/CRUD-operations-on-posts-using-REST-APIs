@@ -37,5 +37,14 @@ app.get("/posts",(req,res)=>{
 //add new posts
 
 //implemented using 2 routes:
-//1) serve the form: GET/posts/new
-//2) add the new posts POST/posts
+//1) serve the form: GET/posts/new -> form will send post request
+//2) add the new posts(to the posts array): POST/posts
+app.get("/posts/new",(req,res)=>{
+    res.render("newPost.ejs");
+})
+
+app.post("/posts",(req,res)=>{
+    let {username,content}=req.body;
+    posts.push({username,content});
+    res.redirect("/posts");                                  //sends a new get request to /posts
+});
