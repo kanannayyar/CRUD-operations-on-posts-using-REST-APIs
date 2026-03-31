@@ -17,10 +17,12 @@ app.listen(port,()=>{
 
 let posts=[                                                           //posts data stored in an array
     {
+        id:"1a",
         username:"kanannayyar",
         content:"this is my first post"
     },
     {
+        id:"2b",
         username:"ajaynayyar",
         content:"Hard work is the key to success"
 
@@ -47,4 +49,11 @@ app.post("/posts",(req,res)=>{
     let {username,content}=req.body;
     posts.push({username,content});
     res.redirect("/posts");                                  //sends a new get request to /posts
+});
+
+//implementing view route: to see a particular post
+app.get("/posts/:id",(req,res)=>{
+    let {id}=req.params;
+    let post=posts.find((p)=> id===p.id);
+    res.render("viewPost.ejs",{post});
 });
