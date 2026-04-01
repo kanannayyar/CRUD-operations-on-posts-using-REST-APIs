@@ -13,6 +13,7 @@
          <h3 class="user"> @<%= post.username %> </h3>
          <h4 class="content"> <%= post.content %> </h4>
          <a href="http://localhost:8080/posts/<%=post.id%>">View post</a>                  <!--to view that particular post -->
+         <a href="http://localhost:8080/posts/<%=post.id%>/edit">Edit post</a>             <!--to edit that post -->
         </div>
     <% } %> 
     <br>
