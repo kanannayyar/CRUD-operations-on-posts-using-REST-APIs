@@ -1,6 +1,7 @@
 const express=require('express');
 const app=express();
 const path=require("path");
+const { v4 : uuidv4 } = require("uuid");                  //using uuid package for post IDs
 
 app.set('view engine','ejs');
 app.set('views' , path.join(__dirname,'/views'));
@@ -17,12 +18,12 @@ app.listen(port,()=>{
 
 let posts=[                                                           //posts data stored in an array
     {
-        id:"1a",
+        id: uuidv4(),                                                 //id using uuid package
         username:"kanannayyar",
         content:"this is my first post"
     },
     {
-        id:"2b",
+        id: uuidv4(),
         username:"ajaynayyar",
         content:"Hard work is the key to success"
 
@@ -47,7 +48,8 @@ app.get("/posts/new",(req,res)=>{
 
 app.post("/posts",(req,res)=>{
     let {username,content}=req.body;
-    posts.push({username,content});
+    let id=uuidv4();
+    posts.push({id,username,content});
     res.redirect("/posts");                                  //sends a new get request to /posts
 });
 
