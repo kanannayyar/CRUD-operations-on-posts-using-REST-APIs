@@ -5,22 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All posts</title>
     <link rel="stylesheet" href="/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>Quora Posts</h1>
+<body class="bg-gray-100 p-6">
+    <h1 class="text-3xl font-bold text-center mb-6">All Posts</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     <% for(let post of posts){ %>
-        <div class="post">
-         <h3 class="user"> @<%= post.username %> </h3>
-         <h4 class="content"> <%= post.content %> </h4>
-         <a href="http://localhost:8080/posts/<%=post.id%>">View post</a>                        <!--to view that particular post -->
-         <a href="http://localhost:8080/posts/<%=post.id%>/edit">Edit post</a>                   <!--to edit that post -->
-         <form action="/posts/<%=post.id%>?_method=DELETE" method="post">
-          <button>Delete post</button>                                                           <!--to delete that post-->
-         </form>
+        <div class="bg-white p-5 rounded-2xl shadow-md hover:shadow-lg transition">
+
+          <h3 class="text-sm text-gray-500 mb-2"> @<%= post.username %> </h3>
+
+          <h4 class="text-lg font-medium text-gray-800 mb-4"> <%= post.content %> </h4>
+
+          <div class="flex justify-between items-center">
+           <a href="http://localhost:8080/posts/<%=post.id%>" class="text-blue-500 hover:underline text-sm">View post</a>             <!--to view that particular post -->
+
+           <div class="flex gap-2">
+            <a href="http://localhost:8080/posts/<%=post.id%>/edit" class="bg-yellow-400 px-3 py-1 rounded-lg text-sm hover:bg-yellow-500">     <!--to edit that post -->
+             Edit post </a>            
+
+            <form action="/posts/<%=post.id%>?_method=DELETE" method="post">                                                 <!--to delete that post-->
+             <button class="bg-red-500 text-white px-3 py-1 rounded-lg text-sm hover:bg-red-600">
+               Delete post </button>                                                          
+            </form>
         </div>
+    </div>
+    </div>
     <% } %> 
+    </div>
     <br>
-    <a href="http://localhost:8080/posts/new">Create new post</a>
-    
+    <div class="flex justify-center mb-6">
+        <a href="http://localhost:8080/posts/new" class="bg-blue-500 text-white px-5 py-2 rounded-xl hover:bg-blue-600 shadow">
+            Create new post </a>
+    </div>
 </body>
 </html>
